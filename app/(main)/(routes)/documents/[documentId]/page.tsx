@@ -8,16 +8,19 @@ import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-interface DocumentIdPageProps {
-    params : {
-        documentId:string;
+interface Params {
+        documentId:Id<"documents">;
     };
-};
 
+    interface Props {
+        params: Params;
+        searchParams: { [key: string]: string | string[] | undefined };
+    }
 
 const DocumentIdPage = ({
-   params
-}:DocumentIdPageProps) => {
+   params,
+   searchParams
+}:Props) => {
     const documentId = params.documentId as Id<"documents">;
     const Editor = useMemo(()=>dynamic(()=>import("@/components/editor"),{ssr:false}),[]);
     const document=useQuery(api.documents.getById,{
