@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
@@ -8,18 +9,17 @@ import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-interface DocumentIdPageProps {
-    params : {
-        documentId:Id<"documents">;
-    };
-};
+// interface DocumentIdPageProps {
+//     params : {
+//         documentId:Id<"documents">;
+//     };
+// };
 
-const DocumentIdPage = ({
-   params
-}:DocumentIdPageProps) => {
+const DocumentIdPage = () => {
+    const { documentId } = useParams();
     const Editor = useMemo(()=>dynamic(()=>import("@/components/editor"),{ssr:false}),[]);
     const document=useQuery(api.documents.getById,{
-        documentId : params.documentId
+        documentId : documentId as Id<"documents">,
     });
 
     const onChange = ()=>{
@@ -27,7 +27,7 @@ const DocumentIdPage = ({
     };
 
     if(document === undefined){
-        return <p>
+        return <div>
             <Cover.Skeleton />
             <div className="md:max-w-3xl lg:max-w-4xl mx-auto mt-10">
                 <div className="space-y-4 pl8 pt-4">
@@ -37,7 +37,7 @@ const DocumentIdPage = ({
                    <Skeleton className="h-4 w-[6 0%]"/>
                 </div>
             </div>
-        </p>
+        </div>
     };
 
     if(document === null){

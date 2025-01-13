@@ -28,6 +28,7 @@ const DocumentsPage = () => {
            width="800"
            alt="note"
            className="dark:hidden"
+           priority
            />
             <Image
            src="/note.png"
@@ -35,6 +36,7 @@ const DocumentsPage = () => {
            width="800"
            alt="note"
            className="hidden dark:block"
+           priority
            />
          <Button onClick={onCreate} className="font-bold">
             <PlusCircle className="h-4 w-4 mr-2"/>
