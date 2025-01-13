@@ -14,13 +14,11 @@ import { useEdgeStore } from "@/lib/edgestore";
 interface EditorProps {
     onChange: (value: string) => void;
     initialContent?: string;
-    editable?: boolean;
 }
 
 const Editor = ({
     onChange,
     initialContent,
-    editable,
 }: EditorProps) => {
     const { resolvedTheme } = useTheme();
     const {edgestore}= useEdgeStore();
@@ -32,7 +30,6 @@ const Editor = ({
         return response.url;
     }
     const editor = useCreateBlockNote({
-        editable,
         initialContent: 
             initialContent 
             ? JSON.parse(initialContent) as PartialBlock[] 

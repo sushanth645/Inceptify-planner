@@ -51,8 +51,7 @@ const DocumentIdPage = () => {
                 <Cover preview url={document.coverImage}/>
               <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
                   <Toolbar preview initialData={document}/>
-                  <Editor 
-                  editable={false}
+                  <Editor
                   onChange={onChange}
                   initialContent={document.content}
                   />
