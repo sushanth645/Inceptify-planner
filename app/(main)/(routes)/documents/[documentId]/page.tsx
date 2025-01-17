@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { Toolbar } from "@/components/toolbar";
 import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,9 +21,13 @@ const DocumentIdPage = () => {
     const document=useQuery(api.documents.getById,{
         documentId : documentId as Id<"documents">,
     });
+    const update= useMutation(api.documents.update);
 
-    const onChange = ()=>{
-
+    const onChange = (content:string)=>{
+      update({
+        id: documentId as Id<"documents">,
+        content
+      });
     };
 
     if(document === undefined){
