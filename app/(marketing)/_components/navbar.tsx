@@ -21,14 +21,14 @@ export const Navbar=()=>{
         )}>
         <div className="max-w-screen-2xl mx-auto flex items-center px-4 py-3">
          <Logo />
-        <div className="ml-auto flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2 ml-auto">
             {isLoading && (
              <Spinner />
             )}
             {!isAuthenticated && !isLoading &&(
-                <>
+                <div className="flex items-center gap-x-2">
                 <SignInButton mode="modal">
-                    <Button variant="ghost" size="sm">
+                    <Button variant="ghost" size="sm" className="hidden md:flex">
                        Log in 
                     </Button>
                 </SignInButton>
@@ -37,11 +37,11 @@ export const Navbar=()=>{
                        Get Inceptify 
                     </Button>
                 </SignInButton>
-                </>
+                </div>
             )}
             {isAuthenticated && !isLoading && (
-                <>
-                <Button variant="ghost" size="sm" asChild>
+                <div className="flex items-center gap-x-2">
+                <Button variant="ghost" size="sm" asChild className="hidden md:flex">
                     <Link href="/documents">
                     Enter Inceptify
                     </Link>
@@ -49,7 +49,7 @@ export const Navbar=()=>{
                 <UserButton 
                 afterSignOutUrl="/"
                 />
-                </>
+                </div>
             )}
            <ModeToggle />
            </div>
