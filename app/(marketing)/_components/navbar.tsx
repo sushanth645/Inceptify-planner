@@ -16,11 +16,12 @@ export const Navbar=()=>{
     const scrolled=useScrollTop(); 
     return(
         <div className={cn( 
-            "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
+            "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full",
             scrolled && "border-b shadow-sm"
         )}>
+        <div className="max-w-screen-2xl mx-auto flex items-center px-4 py-3">
          <Logo />
-        <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
+        <div className="ml-auto flex items-center gap-x-2">
             {isLoading && (
              <Spinner />
             )}
@@ -51,6 +52,7 @@ export const Navbar=()=>{
                 </>
             )}
            <ModeToggle />
+           </div>
         </div>
         </div>
     )
