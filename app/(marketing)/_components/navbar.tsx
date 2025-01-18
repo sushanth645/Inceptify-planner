@@ -16,19 +16,19 @@ export const Navbar=()=>{
     const scrolled=useScrollTop(); 
     return(
         <div className={cn( 
-            "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full",
+            "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-screen md:w-full",
             scrolled && "border-b shadow-sm"
         )}>
-        <div className="max-w-screen-2xl mx-auto flex items-center px-4 py-3">
+        <div className="max-w-screen-2xl mx-auto flex items-center p-3 md:p-6">
          <Logo />
-        <div className="flex items-center gap-x-2 ml-auto">
+        <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
             {isLoading && (
              <Spinner />
             )}
             {!isAuthenticated && !isLoading &&(
-                <div className="flex items-center gap-x-2">
+                <>
                 <SignInButton mode="modal">
-                    <Button variant="ghost" size="sm" className="hidden md:flex">
+                    <Button variant="ghost" size="sm">
                        Log in 
                     </Button>
                 </SignInButton>
@@ -37,10 +37,10 @@ export const Navbar=()=>{
                        Get Inceptify 
                     </Button>
                 </SignInButton>
-                </div>
+                </>
             )}
             {isAuthenticated && !isLoading && (
-                <div className="flex items-center gap-x-2">
+                <>
                 <Button variant="ghost" size="sm" asChild className="hidden md:flex">
                     <Link href="/documents">
                     Enter Inceptify
@@ -49,7 +49,7 @@ export const Navbar=()=>{
                 <UserButton 
                 afterSignOutUrl="/"
                 />
-                </div>
+                </>
             )}
            <ModeToggle />
            </div>
